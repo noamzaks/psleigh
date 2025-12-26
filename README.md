@@ -12,6 +12,9 @@ instead of working with cumbersome ffi objects, this library provides pythonic d
 pip install psleigh
 ```
 
+prebuilt wheels are available for most OSs.
+if building from source on macos you probably need a more recent version of bison, e.g. from homebrew. use `brew install bison` and `export PATH="/opt/homebrew/opt/bison/bin:$PATH"` before attempting this.
+
 ## usage
 
 here is a simple example of how to use this library to lift a single x86_64 instruction:

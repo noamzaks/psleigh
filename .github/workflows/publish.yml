@@ -29,13 +29,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # for now we only build for linux
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, macos-15-intel]
 
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
+
+      - name: macOS-only setup
+        if: ${{ matrix.os == 'macos-latest' || matrix.os == 'macos-15-intel' }}
+        run: |
+          # install a newer version of bison
+          brew install bison
+          echo 'export PATH="$(brew --prefix bison)/bin:$PATH"' >> $GITHUB_ENV
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.17.0

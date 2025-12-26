@@ -39,6 +39,11 @@ CXXFLAGS += -flto
 
 YACC := bison
 
+OS := $(shell uname)
+ifeq ($(OS),Darwin)
+        LDFLAGS += -undefined dynamic_lookup
+endif
+
 .phony: all
 all: $(DIST_DIR)/psleigh_bindings.so $(SLA_FILES)
 
