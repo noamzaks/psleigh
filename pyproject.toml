@@ -20,7 +20,7 @@ packages = ["src/psleigh"]
 
 [[tool.hatch.build.hooks.build-scripts.scripts]]
 work_dir = "."
-commands = ["make -C sleigh -j && cp -r sleigh/build/dist/* src/psleigh/"]
+commands = ["python3 before_build.py"]
 artifacts = []
 
 [build-system]
